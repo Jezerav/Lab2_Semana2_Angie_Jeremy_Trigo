@@ -34,6 +34,7 @@ public class Empresa {
         }
         
         System.out.print("Ingrese el nombre completo: ");
+        String nombre = entrada.nextLine(); // <<--- Se agregó la lectura del nombre
         
         System.out.print("Ingrese el salario base mensual: ");
         double salarioBase = entrada.nextDouble();
@@ -50,19 +51,36 @@ public class Empresa {
         
         switch(opcion){
             case 1:
-                nuevoEmpleado = new Empleado(codigo, nombre, salarioBase);
+                // ASUMIENDO constructor Empleado(codigo, nombre, salarioBase) usa fechaCont=hoy y horasTotal=0
+                nuevoEmpleado = new Empleado(codigo, nombre, salarioBase); 
                 break;
             case 2:
                 System.out.println("\nDATOS DEL EMPLEADO TEMPORAL");
                 Calendar fechaFin = solicitarFecha("Fecha de Fin contrato(DIA MES AÑO): ");
+                // ASUMIENDO constructor EmpleadoTemporal(codigo, nombre, salarioBase, fechaFin) usa fechaCont=hoy y horasTotal=0
                 nuevoEmpleado = new EmpleadoTemporal(codigo, nombre, salarioBase, fechaFin);
                 break;
             case 3:
                 System.out.println("\nDATOS DE EMPLEADO DE VENTAS");
-                System.out.print("Ingrese la tasa de comision: ");
+                System.out.print("Ingrese la tasa de comision (ej: 0.05): ");
                 double tasaComision = entrada.nextDouble();
                 entrada.nextLine();
-                nuevoEmpleado = new EmpleadoVentas(codigo, nombre, salarioBase, tasaComision);
+                
+                // *** CORRECCIÓN DEL ERROR ***
+                // Se debe usar el constructor de EmpleadoVentas que enviaste (5 parámetros), 
+                // y luego establecer la tasa de comisión si el constructor no la acepta.
+                
+                // 1. Creamos la fecha de contrato inicial (hoy) y 0 horas.
+                Calendar fechaInicioVentas = Calendar.getInstance(); 
+                
+                // 2. Usamos el constructor de 5 parámetros que pasa a la clase Empleado.
+                //    NOTA: El constructor que enviaste en EmpleadoVentas ignora 'tasaComision' en la firma,
+                //    pero lo enviamos a la clase Empleado.
+                nuevoEmpleado = new EmpleadoVentas(codigo, nombre, fechaInicioVentas, salarioBase, 0); 
+                
+                // 3. Establecemos la tasa de comisión usando el setter.
+                ((EmpleadoVentas) nuevoEmpleado).setTasaComision(tasaComision); 
+                
                 break;
             default: 
                 System.out.println("ERROR: Opcion invalida");
@@ -160,4 +178,5 @@ public class Empresa {
         System.out.println("Error: No se encontró ningún empleado con el código " + codigo);
         return false;
     }
+    
 }

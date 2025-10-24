@@ -45,11 +45,10 @@ public class Empleado {
         return horasTotal;
     }
     
-    public int horasTrabajadas(int horas) {
+    public void horasTrabajadas(int horas) {
         if (horas > 0) {
             horasTotal+=horas;
         }
-        return horas;
     }
     
     public double calculoPago () {
@@ -62,4 +61,5 @@ public class Empleado {
         return "Codigo de empleado: " + codigo+ " Nombre de empleado: "+nombre+" Fecha de contratacion: "
                 + fechaCont;
     }
+
 }
