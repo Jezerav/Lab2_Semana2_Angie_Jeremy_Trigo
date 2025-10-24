@@ -8,7 +8,7 @@ import java.util.Calendar;
 
 /**
  *
- * @author jerem
+ * @author HP
  */
 public class EmpleadoTemporal extends Empleado {
 
