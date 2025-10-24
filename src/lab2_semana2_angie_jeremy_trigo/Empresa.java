@@ -51,7 +51,7 @@ public class Empresa {
         
         switch(opcion){
             case 1:
-                nuevoEmpleado = new Empleado(codigo, nombre, salarioBase); 
+                
                 break;
             case 2:
                 System.out.println("\nDATOS DEL EMPLEADO TEMPORAL");
@@ -99,7 +99,7 @@ public class Empresa {
         int horas = entrada.nextInt();
         entrada.nextLine(); 
         
-        empleado.registrarHorasTrabajadas(horas);
+        
         System.out.println("Horas registradas. Horas totales de "+empleado.getNombre()+" :"+empleado.getHorasTotal());
     }
     

@@ -122,7 +122,6 @@ public class MenuPrincipal extends JFrame {
         panelBusq.add(Box.createVerticalGlue());
     }
     
-    // --- METODOS DE LOGICA DE LA GUI (CONECTADOS A EMPRESA) ---
 
     private void buscarEmpleadoGUI() {
         try {
@@ -315,14 +314,13 @@ public class MenuPrincipal extends JFrame {
             if (partes.length != 3) throw new InputMismatchException();
             
             int dia = Integer.parseInt(partes[0].trim());
-            int mes = Integer.parseInt(partes[1].trim()) - 1; // Calendar usa 0 para Enero
+            int mes = Integer.parseInt(partes[1].trim()) - 1; 
             int anio = Integer.parseInt(partes[2].trim());
 
             Calendar cal = Calendar.getInstance();
             cal.set(anio, mes, dia);
             return cal;
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-            // Si algo falla al sacar los números, lanza esta excepción.
             throw new InputMismatchException();
         }
     }
