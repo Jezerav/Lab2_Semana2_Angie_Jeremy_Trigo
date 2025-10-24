@@ -138,4 +138,23 @@ public class Empresa {
             return Calendar.getInstance();
         }
     }
+    
+        public boolean actuFechaFinContrato (int codigo, Calendar nuevaFecha) {
+        for (Empleado empleado : listaEmpleados) {
+            if (empleado.getCodigo() == codigo) {
+                if (empleado instanceof EmpleadoTemporal) {
+                    
+                    EmpleadoTemporal empTemporal = (EmpleadoTemporal) empleado;
+                    empTemporal.actualiozarFechaFinCont(nuevaFecha);
+                    return true;
+                    
+                } else {
+                    System.out.println("Error: El empleado con codigo " + codigo+ " no es un Empleado Temporal.");
+                    return false;
+                }
+            }
+        }
+        System.out.println("Error: No se encontró ningún empleado con el código " + codigo);
+        return false;
+    }
 }
